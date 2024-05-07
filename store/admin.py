@@ -9,15 +9,11 @@ class CategoryAdmin(admin.ModelAdmin):
     fields = ('name', 'slug', 'created_at')
 
 
-# TODO: Написать настройки админ-панели для Product
-
-
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('name', 'price', 'quantity', 'category', 'is_available')
-    # readonly_fields = ('created_at',)
-    fields = ('name', 'quantity', 'category', 'price')
+    readonly_fields = ('created_at',)
+    fields = ('name', 'quantity', 'category', 'price', 'created_at')
 
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product, ProductAdmin)
-

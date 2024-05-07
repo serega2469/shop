@@ -30,17 +30,14 @@ class Category(models.Model):
         return self.name
 
 
-# TODO: 1. Улучшить модель,
-#  2. написать verbose_name, указать максимальную длину
-#  3. Написать Meta класс
 class Product(models.Model):
     name = models.CharField(max_length=256)
     description = models.TextField()
-    # created_at = models.DateTimeField(
-    #     auto_now_add=True,
-    #     verbose_name='Дата создания'
-    # )
-    price = models.PositiveIntegerField()
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name='Дата создания'
+    )
+    price = models.PositiveIntegerField('Цена')
     quantity = models.PositiveIntegerField()
     category = models.ForeignKey(to=Category, on_delete=models.CASCADE)
     is_available = models.BooleanField('В наличии', default=True)
@@ -48,7 +45,7 @@ class Product(models.Model):
     class Meta:
         verbose_name = 'Товар'
         verbose_name_plural = 'Товары'
-        ordering = ('price',)
+        ordering = ('-created_at',)
 
     def __str__(self):
         return self.name
