@@ -26,6 +26,9 @@ class Category(models.Model):
         verbose_name_plural = 'Категории'
         ordering = ('-created_at',)
 
+    def __str__(self):
+        return self.name
+
 
 # TODO: 1. Улучшить модель,
 #  2. написать verbose_name, указать максимальную длину
@@ -33,7 +36,19 @@ class Category(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=256)
     description = models.TextField()
+    # created_at = models.DateTimeField(
+    #     auto_now_add=True,
+    #     verbose_name='Дата создания'
+    # )
     price = models.PositiveIntegerField()
     quantity = models.PositiveIntegerField()
     category = models.ForeignKey(to=Category, on_delete=models.CASCADE)
     is_available = models.BooleanField('В наличии', default=True)
+
+    class Meta:
+        verbose_name = 'Товар'
+        verbose_name_plural = 'Товары'
+        ordering = ('price',)
+
+    def __str__(self):
+        return self.name
