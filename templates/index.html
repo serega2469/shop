@@ -5,6 +5,17 @@
   <title>Онлайн-магазин</title>
 </head>
 <body>
-<h1>Привет, Мир 10!</h1>
+<h1> {{ text }} </h1>
+
+{% for product in products %}
+  {% if product.is_available %}
+    <h2>{{ product.name }}</h2>
+    <h4>Категория: {{ product.category }}</h4>
+    <p><strong>О товаре:</strong> {{ product.description }}</p>
+    <p>Стоимость:<strong>{{ product.price }}</strong></p>
+    <p>Доступно: {{ product.quantity }} шт.</p>
+  {% endif %}
+{% endfor %}
+
 </body>
 </html>

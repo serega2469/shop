@@ -10,9 +10,13 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'price', 'quantity', 'category', 'is_available')
+    list_display = ('name', 'price',
+                    'quantity', 'category',
+                    'is_available')
     readonly_fields = ('created_at',)
-    fields = ('name', 'quantity', 'category', 'price', 'created_at')
+    fields = ('name', 'description',
+              'quantity', 'category', 'is_available',
+              'price', 'created_at')
 
 
 admin.site.register(Category, CategoryAdmin)

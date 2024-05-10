@@ -30,6 +30,7 @@ class Category(models.Model):
         return self.name
 
 
+# TODO: Улучшить атрибуты модели, добавить verbose_name
 class Product(models.Model):
     name = models.CharField(max_length=256)
     description = models.TextField()
