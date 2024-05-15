@@ -32,15 +32,15 @@ class Category(models.Model):
 
 # TODO: Улучшить атрибуты модели, добавить verbose_name
 class Product(models.Model):
-    name = models.CharField(max_length=256)
-    description = models.TextField()
+    name = models.CharField(max_length=256, verbose_name='Название')
+    description = models.TextField(verbose_name='Описание')
     created_at = models.DateTimeField(
         auto_now_add=True,
         verbose_name='Дата создания'
     )
-    price = models.PositiveIntegerField('Цена')
-    quantity = models.PositiveIntegerField()
-    category = models.ForeignKey(to=Category, on_delete=models.CASCADE)
+    price = models.PositiveIntegerField(verbose_name='цена')
+    quantity = models.PositiveIntegerField(verbose_name='Количество')
+    category = models.ForeignKey(to=Category, on_delete=models.CASCADE, verbose_name='Категория')
     is_available = models.BooleanField('В наличии', default=True)
 
     class Meta:
