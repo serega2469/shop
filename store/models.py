@@ -30,7 +30,6 @@ class Category(models.Model):
         return self.name
 
 
-# TODO: Улучшить атрибуты модели, добавить verbose_name
 class Product(models.Model):
     name = models.CharField(max_length=256, verbose_name='Название')
     description = models.TextField(verbose_name='Описание')
@@ -40,7 +39,12 @@ class Product(models.Model):
     )
     price = models.PositiveIntegerField(verbose_name='цена')
     quantity = models.PositiveIntegerField(verbose_name='Количество')
-    category = models.ForeignKey(to=Category, on_delete=models.CASCADE, verbose_name='Категория')
+    category = models.ForeignKey(
+        Category,
+        on_delete=models.CASCADE,
+        related_name='products',
+        verbose_name='Категория'
+    )
     is_available = models.BooleanField('В наличии', default=True)
 
     class Meta:
